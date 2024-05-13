@@ -2,11 +2,12 @@ import socket
 import inspect
 
 class Request:
-    def __init__(self, method, path, headers, body):
+    def __init__(self, method, path, headers, body, client_address):
         self.method = method
         self.path = path
         self.headers = headers
         self.body = body
+        self.client_address = client_address
 
 class Response:
     def __init__(self, status_code, headers, body):
@@ -49,7 +50,7 @@ class Server:
                 client_socket, address = self.socket.accept()
                 try:
                     request_data = client_socket.recv(1024)
-                    request = self.parse_request(request_data)
+                    request = self.parse_request(request_data, address)
                     response = self.handle_request(request)
                     client_socket.sendall(response.encode())
                 except Exception as e:
@@ -62,7 +63,7 @@ class Server:
             if self.socket:
                 self.socket.close()
 
-    def parse_request(self, request_data):
+    def parse_request(self, request_data, client_address):
         lines = request_data.split(b'\r\n')
         start_line = lines[0].decode('utf-8')
         method, path, version = start_line.split(' ')
@@ -80,7 +81,7 @@ class Server:
         if lines[-1]:
             body = lines[-1].decode('utf-8')
 
-        return Request(method, path, headers, body)
+        return Request(method, path, headers, body, client_address)
 
     def find_handler(self, request_path):
         handler = self.router.get_route(request_path)
@@ -91,7 +92,6 @@ class Server:
     def handle_request(self, request):
         response = Response(200, {}, b"")
 
-        # Execute functions registered with before_request before handling the request
         for func in self.before_request_funcs:
             func(request)
 
