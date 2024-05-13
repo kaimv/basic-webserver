@@ -1,7 +1,5 @@
 import socket
-import re
 import inspect
-from functools import partial
 
 class Request:
     def __init__(self, method, path, headers, body):
@@ -24,6 +22,9 @@ class Response:
 class Router:
     def __init__(self):
         self.routes = {}
+
+    def add_route(self, path, handler):
+        self.routes[path] = handler
 
     def get_route(self, path):
         return self.routes.get(path)
@@ -97,6 +98,9 @@ class Server:
                     return result
                 elif isinstance(result, str):
                     return Response(200, {'Content-Type': 'text/html'}, result.encode())
+                elif isinstance(result, tuple) and len(result) == 2:
+                    status_code, body = result
+                    return Response(status_code, {}, body.encode())
                 else:
                     return Response(500, {}, b"Internal Server Error")
             else:
@@ -113,10 +117,6 @@ class Server:
     def default_response(self, response):
         response.status_code = 500
         response.body = b"Internal Server Error"
-
-    def load_template(self, file_path):
-        with open(file_path, "r") as f:
-            return f.read()
 
     def route(self, path):
         def decorator(func):
