@@ -37,3 +37,12 @@ Explaination:
 `return 200, "Hello world!"` returns the status code "200" which means OK request with the text content "Hello world!".
 
 `server.start()` starts the server on the address and port specified in the `Server()` class.
+
+# Whats new?
+
+Here will be a list of a few updates from the past week or so.
+
+14/05/24:
+
+- A before request function has been added to run code before a request. For example, printing a successful connection.
+- Allow collection of the request IP (May not work as intended if the webserver is behind a reverse proxy like nginx/apache and cloudflare), the request path for example `/this_is_a_path` and the response method.
