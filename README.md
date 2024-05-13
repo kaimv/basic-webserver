@@ -1,3 +1,5 @@
+A basic web server that is able to render HTML and plain text with status codes. 
+
 # Information
 
 Hello! Thanks for coming to view this repoistory! It is currently under heavy development so please, expect bugs.
