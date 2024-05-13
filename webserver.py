@@ -34,6 +34,7 @@ class Server:
         self.host = host
         self.port = port
         self.router = Router()
+        self.before_request_funcs = []
 
     def start(self):
         self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -89,6 +90,11 @@ class Server:
 
     def handle_request(self, request):
         response = Response(200, {}, b"")
+
+        # Execute functions registered with before_request before handling the request
+        for func in self.before_request_funcs:
+            func(request)
+
         handler, kwargs = self.find_handler(request_path=request.path)
 
         if handler is not None:
@@ -128,3 +134,7 @@ class Server:
         with open(file_path, "r") as f:
             html_content = f.read()
         return Response(200, {'Content-Type': 'text/html'}, html_content.encode())
+
+    def before_request(self, func):
+        self.before_request_funcs.append(func)
+        return func
