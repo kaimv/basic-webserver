@@ -5,7 +5,6 @@ Welcome! Thank you for exploring this repository. Please note that it's currentl
 ## Current Issues
 
 - [ ] CTRL + C doesn't terminate the program (On Windows hosts).
-- [ ] An occasional random line is added to text-based responses.
 - [ ] Errors resembling `utf-8' codec can't decode byte` are printed to the terminal.
 
 # What's New in Version 0.4?
