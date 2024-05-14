@@ -1,21 +1,30 @@
-A basic web server that is able to render HTML and plain text with status codes. 
+# Overview
 
-# Information
+Welcome! Thank you for exploring this repository. Please note that it's currently undergoing active development, so bugs may be present.
 
-Hello! Thanks for coming to view this repoistory! It is currently under heavy development so please, expect bugs.
+## Current Issues
 
-Curent bugs (Tick means bug is fixed):
-- [ ] CTRL + C Does not end the program
-- [ ] Random line added to text based responses
+- [ ] CTRL + C doesn't terminate the program (On Windows hosts).
+- [ ] An occasional random line is added to text-based responses.
+- [ ] Errors resembling `utf-8' codec can't decode byte` are printed to the terminal.
 
-You may find examples of how to use this module in the examples folder.
+# What's New in Version 0.4?
 
-# Whats new?
+Version 0.4 introduces several noteworthy improvements:
 
-Here will be a list of a few updates from the past week or so.
+- Enhanced HTTP method support, including POST requests.
+- Improved routing and request handling for various HTTP methods.
+- Advanced error management with customizable error handlers.
+- Basic support for rendering HTML and plaintext with associated status codes.
+- Streamlined user interface and error reporting.
+- Bug fixes and performance optimizations.
 
-14/05/24:
+# Future Development Plans
 
-- A before request function has been added to run code before a request. For example, printing a successful connection.
-- Allow collection of the request IP (May not work as intended if the webserver is behind a reverse proxy like nginx/apache and cloudflare), the request path for example `/this_is_a_path` and the response method.
-- Added functionality to get the clients IP if behind a reverse proxy such as NGINX. (Only if X-Forward-For header is present)
+Looking ahead, here are some features and enhancements in the pipeline:
+
+- Further expansion of functionality within each component to offer users greater flexibility.
+- Implementation of a custom error handler allowing users to personalize error responses, such as 404 and 403.
+- Consideration of authentication mechanisms for enhanced security.
+
+Your contributions and feedback are always welcome as we strive to enhance this project together.
