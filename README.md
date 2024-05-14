@@ -18,3 +18,4 @@ Here will be a list of a few updates from the past week or so.
 
 - A before request function has been added to run code before a request. For example, printing a successful connection.
 - Allow collection of the request IP (May not work as intended if the webserver is behind a reverse proxy like nginx/apache and cloudflare), the request path for example `/this_is_a_path` and the response method.
+- Added functionality to get the clients IP if behind a reverse proxy such as NGINX. (Only if X-Forward-For header is present)
