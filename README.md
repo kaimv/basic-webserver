@@ -7,6 +7,14 @@ Welcome! Thank you for exploring this repository. Please note that it's currentl
 - [ ] CTRL + C doesn't terminate the program (On Windows hosts).
 - [ ] Errors resembling `utf-8' codec can't decode byte` are printed to the terminal.
 
+# Installation
+
+To install `basic-web-server` from PyPI, you can use pip, Python's package installer. Open your terminal or command prompt and run the following command:
+
+`pip install basic-web-server`
+
+This will download and install the latest version of `basic-web-server` and its dependencies.
+
 # What's New in Version 0.4?
 
 Version 0.4 introduces several noteworthy improvements:
@@ -17,6 +25,14 @@ Version 0.4 introduces several noteworthy improvements:
 - Basic support for rendering HTML and plaintext with associated status codes.
 - Streamlined user interface and error reporting.
 - Bug fixes and performance optimizations.
+
+# Usage
+
+Once `basic-web-server` is installed, you can import it into your Python scripts using the following:
+
+`import basic_webserver`
+
+Now you can utilize the functionalities provided by `basic_webserver` in your Python projects. You may find examples within the examples folder in this repository.
 
 # Future Development Plans
 
