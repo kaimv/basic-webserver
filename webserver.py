@@ -76,12 +76,15 @@ class Server:
             else:
                 pass
 
+        client_ip = headers.get('X-Forwarded-For', '').split(',')[0].strip() or client_address[0]
+
         body = None
 
         if lines[-1]:
             body = lines[-1].decode('utf-8')
 
-        return Request(method, path, headers, body, client_address)
+        return Request(method, path, headers, body, (client_ip, client_address[1]))
+
 
     def find_handler(self, request_path):
         handler = self.router.get_route(request_path)
